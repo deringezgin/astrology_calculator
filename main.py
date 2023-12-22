@@ -15,6 +15,7 @@ def fill_form(item):
 # Website Link
 astrology_link = "https://www.astrologicalassociation.com/chart-calculator/"
 
+# Collecting the name, birthday and birth time of the user. 
 name = input("Please enter your name: ")
 
 DD_MM_YYYY = input("Please enter your birthday as DD-MM-YYYY (07-11-2004): ")
@@ -28,8 +29,10 @@ hour_min = HH_MM.split(".")
 hour = hour_min[0]
 min = hour_min[1]
 
+# Because the location system is very specific, it's default value is a city in Turkey. Can be changed here. 
 city = "Izmir"
 
+# Chrome driver location. Please use the Chrome driver, same as your Chrome version, and update the driver location below. 
 service = Service("/Users/deringezgin/Documents/deringezgin/CS Books/chromedriver")
 driver = webdriver.Chrome(service=service)
 driver.get(astrology_link)
@@ -57,6 +60,7 @@ actions.send_keys(Keys.TAB, Keys.ENTER)
 actions.perform()
 time.sleep(5)
 
+# Scraping the results from the website.
 planets = []
 for i in range(1, 12):
     planet = driver.find_element(by=By.XPATH, value=f'//*[@id="zp-report-content"]/p[{i}]')
@@ -81,6 +85,7 @@ for house in houses:
     else:
         new_houses.append(house)
 
+# Printing the results to the user
 print("\n")
 for planet in planets:
     print(planet)
