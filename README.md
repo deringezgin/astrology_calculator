@@ -1,1 +1,1 @@
-# astrology_calculator
+# Astrology Calculator
